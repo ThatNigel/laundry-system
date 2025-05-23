@@ -1,0 +1,57 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block title %}
+    Customers
+{% endblock %}
+{% block content %}
+  <div id="customers" class="tab-content">
+      <h2>Customer Management</h2>
+      <button class="btn btn-primary" onclick="openModal('customerModal')">Add New Customer</button>
+      <div class="search-box">
+        <input type="text" id="customerSearch" placeholder="Search customers..." onkeyup="searchCustomers()" >
+      </div>
+       <div class="table-container">
+                <table id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+       </div>
+  </div>
+  <div id="customerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('customerModal')">&times;</span>
+            <h3 id="customerModalTitle">Add New Customer</h3>
+            <form id="customerForm">
+                <input type="hidden" id="customerId">
+                <div class="form-group">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerPhone">Phone</label>
+                        <input type="tel" id="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Address</label>
+                    <textarea id="customerAddress" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Save Customer</button>
+            </form>
+        </div>
+  </div>
+{% endblock %}

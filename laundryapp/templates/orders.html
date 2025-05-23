@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Orders
+{% endblock %}
+{% block content %}
+   <div id="orders" class="tab-content">
+      <h2>Order Management</h2>
+      <button class="btn btn-primary" onclick="openModal('orderModal')">Create New Order</button>
+
+      <div class="search-box">
+                <input type="text" id="orderSearch" placeholder="Search orders..." onkeyup="searchOrders()">
+      </div>
+      <div class="table-container">
+          <table id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>Quantity</th>
+                            <th>TotalPrice</th>
+                            <th>Status</th>
+                            <th>OrderDate</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+          </table>
+      </div>
+
+   </div>
+   <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('orderModal')">&times;</span>
+            <h3 id="orderModalTitle">Create New Order</h3>
+            <form id="orderForm">
+                <input type="hidden" id="orderId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="orderCustomer">Customer</label>
+                        <select id="orderCustomer" required>
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderService">Service</label>
+                        <select id="orderService" required onchange="updateOrderPrice()">
+                            <option value="">Select Service</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="orderQuantity">Quantity</label>
+                        <input type="number" id="orderQuantity" value="1" min="1" required onchange="updateOrderPrice()">
+                    </div>
+                    <div class="form-group">
+                        <label for="orderTotal">Total Price ($)</label>
+                        <input type="number" id="orderTotal" step="0.01" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="orderStatus">Status</label>
+                    <select id="orderStatus" required>
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="ready">Ready</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="orderNotes">Notes</label>
+                    <textarea id="orderNotes" rows="3" placeholder="Special instructions..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Save Order</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

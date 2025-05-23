@@ -1,0 +1,30 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block title %}
+    Dashboard
+{% endblock %}
+{% block content %}
+  <div id="dashboard" class="tab-content-active">
+      <h2>Dashboard Overview</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="totalCustomers">0</div>
+          <div>Total Customers</div>
+        </div>
+         <div class="stat-card">
+          <div class="stat-number" id="totalOrders">0</div>
+          <div>Total Orders</div>
+        </div>
+         <div class="stat-card">
+          <div class="stat-number" id="pendingOrders">0</div>
+          <div>Pending Orders</div>
+        </div>
+         <div class="stat-card">
+          <div class="stat-number" id="totalRevenue">$0</div>
+          <div>Total Revenue</div>
+        </div>
+      </div>
+
+  </div>
+
+{%  endblock %}
